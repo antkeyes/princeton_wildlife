@@ -1,0 +1,16 @@
+{
+  "name": "princeton-wildlife",
+  "version": "1.0.0",
+  "description": "Wildlife trail camera video website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["wildlife", "trail-camera"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

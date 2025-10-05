@@ -1,0 +1,85 @@
+{
+  "videos": [
+    {
+      "title": "Sample Video 2",
+      "url": "https://www.youtube.com/watch?v=3suTUQbML0Y",
+      "description": "Short desctiption of video",
+      "date": "October 4, 2025",
+      "animalTags": [
+        {
+          "name": "Deer",
+          "timestamp": 15,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "Fox",
+          "timestamp": 45,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "Rabbit",
+          "timestamp": 90,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "shrimp",
+          "timestamp": 13,
+          "userSuggested": true,
+          "contributedBy": "Boti"
+        }
+      ]
+    },
+    {
+      "title": "Sample Video 1",
+      "url": "https://www.youtube.com/watch?v=ff5c1P9xA7o",
+      "description": "Short description of video.",
+      "date": "October 2, 2025",
+      "animalTags": [
+        {
+          "name": "Squirrel",
+          "timestamp": 10,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "Blue Jay",
+          "timestamp": 25,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "Chipmunk",
+          "timestamp": 40,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "Cardinal",
+          "timestamp": 55,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "Robin",
+          "timestamp": 70,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "Monkey",
+          "timestamp": 90,
+          "userSuggested": true,
+          "contributedBy": "Boti"
+        },
+        {
+          "name": "bigfoot",
+          "timestamp": 100,
+          "userSuggested": true,
+          "contributedBy": "Anthony K"
+        }
+      ]
+    },
+    {
+      "title": "Example Video Title 3",
+      "url": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE",
+      "description": "To add more videos, just copy this block and paste it below, then update the information. The 'animalTags' field is optional - add animal names and their timestamp (in seconds) when they appear in the video.",
+      "date": "September 28, 2025",
+      "animalTags": []
+    }
+  ]
+}

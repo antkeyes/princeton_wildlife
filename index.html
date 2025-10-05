@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princeton Wildlife | Trail Camera Videos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Princeton Wildlife</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="bio.html" class="nav-link">Bio</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Princeton Wildlife</h1>
+            <p class="tagline">Exploring Nature Through Trail Cameras</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro-section">
+            <h2>Welcome to Princeton Wildlife</h2>
+            <p>Short introduction sentence explaining the purpose of this website.</p>
+            <p>Second line if you need it.</p>
+        </section>
+
+        <section id="videos-section">
+            <h2 class="section-title">Recent Videos</h2>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-label">Filter Videos By:</div>
+                <div id="filter-tags-container" class="filter-tags-container">
+                    <!-- Filter tags will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <div id="videos-grid" class="videos-grid">
+                <!-- Videos will be dynamically loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Princeton Wildlife. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for adding animal tags -->
+    <div id="add-animal-modal" class="modal">
+        <div class="modal-content">
+            <h3>Suggest an Animal Sighting</h3>
+            <p>Help us tag animals we may have missed! Enter the animal name and when it appears in the video.</p>
+
+            <div class="form-group">
+                <label for="animal-name-input">Animal Name</label>
+                <input type="text" id="animal-name-input" placeholder="e.g., Deer, Fox, Rabbit" />
+            </div>
+
+            <div class="form-group">
+                <label for="timestamp-input">Timestamp (seconds)</label>
+                <input type="number" id="timestamp-input" placeholder="e.g., 45" min="0" />
+            </div>
+
+            <div class="modal-buttons">
+                <button id="cancel-animal-tag" class="modal-btn secondary">Cancel</button>
+                <button id="submit-animal-tag" class="modal-btn primary">Add Tag</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
