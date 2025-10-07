@@ -1,66 +1,227 @@
 {
   "videos": [
     {
-      "title": "Sample Video 2",
-      "url": "https://www.youtube.com/watch?v=3suTUQbML0Y",
-      "description": "Short desctiption of video",
-      "date": "October 4, 2025",
-      "animalTags": [
-        {
-          "name": "Deer",
-          "timestamp": 15,
-          "contributedBy": "Boti"
-        },
-        {
-          "name": "Fox",
-          "timestamp": 45,
-          "contributedBy": "Boti"
-        },
-        {
-          "name": "Rabbit",
-          "timestamp": 90,
-          "contributedBy": "Boti"
-        }
-      ]
-    },
-    {
-      "title": "Sample Video 1",
-      "url": "https://www.youtube.com/watch?v=ff5c1P9xA7o",
+      "title": "Wildlife Video 1",
+      "url": "https://www.youtube.com/watch?v=1LcTyqgHmIQ",
       "description": "Short description of video.",
-      "date": "October 2, 2025",
-      "animalTags": [
-        {
-          "name": "Squirrel",
-          "timestamp": 10,
-          "contributedBy": "Boti"
-        },
-        {
-          "name": "Blue Jay",
-          "timestamp": 25,
-          "contributedBy": "Boti"
-        },
-        {
-          "name": "Chipmunk",
-          "timestamp": 40,
-          "contributedBy": "Boti"
-        },
-        {
-          "name": "Cardinal",
-          "timestamp": 55,
-          "contributedBy": "Boti"
-        },
-        {
-          "name": "Robin",
-          "timestamp": 70,
-          "contributedBy": "Boti"
-        }
-      ]
+      "date": "October 6, 2025",
+      "animalTags": []
     },
     {
-      "title": "Example Video Title 3",
-      "url": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE",
-      "description": "To add more videos, just copy this block and paste it below, then update the information. The 'animalTags' field is optional - add animal names and their timestamp (in seconds) when they appear in the video.",
-      "date": "September 28, 2025",
+      "title": "Wildlife Video 2",
+      "url": "https://www.youtube.com/watch?v=TdQjuiH3oz8",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 3",
+      "url": "https://www.youtube.com/watch?v=6bSfBJ3g1a0",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 4",
+      "url": "https://www.youtube.com/watch?v=IH_CMjyFjwU",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 5",
+      "url": "https://www.youtube.com/watch?v=yE0UcwT3MQ4",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 6",
+      "url": "https://www.youtube.com/watch?v=Owk2AHW_pPc",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 7",
+      "url": "https://www.youtube.com/watch?v=Uo9oIssNADo",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 8",
+      "url": "https://www.youtube.com/watch?v=LE6ROORDuxA",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 9",
+      "url": "https://www.youtube.com/watch?v=YW5FXovLzpM",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 10",
+      "url": "https://www.youtube.com/watch?v=99eKHIITSCw",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 11",
+      "url": "https://www.youtube.com/watch?v=lsSXdUPin_Y",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 12",
+      "url": "https://www.youtube.com/watch?v=HRKDTt0i8YQ",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 13",
+      "url": "https://www.youtube.com/watch?v=1I4Ye-L8g2w",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 14",
+      "url": "https://www.youtube.com/watch?v=pdPVk9CytgI",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 15",
+      "url": "https://www.youtube.com/watch?v=tf5rEbh4kwQ",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 16",
+      "url": "https://www.youtube.com/watch?v=8c6wlt4ok3c",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 17",
+      "url": "https://www.youtube.com/watch?v=cfdzTWyLGV4",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 18",
+      "url": "https://www.youtube.com/watch?v=HdKL5hm5MmA",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 19",
+      "url": "https://www.youtube.com/watch?v=oTFN6g7ZdI4",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 20",
+      "url": "https://www.youtube.com/watch?v=xdV8uSGKXVQ",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 21",
+      "url": "https://www.youtube.com/watch?v=kxcCFi6wtCA",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 22",
+      "url": "https://www.youtube.com/watch?v=KNTRwOuuw1c",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 23",
+      "url": "https://www.youtube.com/watch?v=K5CP0Mu70O8",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 24",
+      "url": "https://www.youtube.com/watch?v=RBUdXn6fB-U",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 25",
+      "url": "https://www.youtube.com/watch?v=jQrUfvvdaoM",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 26",
+      "url": "https://www.youtube.com/watch?v=VpD4dM0sVKU",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 27",
+      "url": "https://www.youtube.com/watch?v=VpYDMNn0KEE",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 28",
+      "url": "https://www.youtube.com/watch?v=GXZzN8qd7mM",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 29",
+      "url": "https://www.youtube.com/watch?v=nVEL9iVjQ3E",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 30",
+      "url": "https://www.youtube.com/watch?v=4qV2k_l9ghA",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 31",
+      "url": "https://www.youtube.com/watch?v=_cQTuB2tqHQ",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
+      "animalTags": []
+    },
+    {
+      "title": "Wildlife Video 32",
+      "url": "https://www.youtube.com/watch?v=hSCAdg1CTYA",
+      "description": "Short description of video.",
+      "date": "October 6, 2025",
       "animalTags": []
     }
   ]
