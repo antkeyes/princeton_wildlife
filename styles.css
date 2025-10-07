@@ -123,16 +123,24 @@ main {
 }
 
 /* Introduction Section */
+.intro-wrapper {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    align-items: flex-start;
+}
+
 .intro-section {
     background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
     padding: 50px 55px;
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    margin-top: 40px;
-    margin-bottom: 60px;
     border: 1px solid rgba(61,122,37,0.15);
     position: relative;
     overflow: hidden;
+    flex: 1;
+    max-width: 50%;
 }
 
 .intro-section::before {
@@ -163,8 +171,30 @@ main {
     margin-bottom: 18px;
 }
 
-.intro-section p:last-child {
+.intro-section p:last-of-type {
     margin-bottom: 0;
+}
+
+.map-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+}
+
+.map-caption {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
 }
 
 .section-title {

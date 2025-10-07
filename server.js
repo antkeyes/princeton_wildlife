@@ -7,14 +7,18 @@ const { Pool } = require('pg');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// PostgreSQL connection
-const pool = new Pool({
+// PostgreSQL connection (only in production)
+const pool = process.env.DATABASE_URL ? new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
-});
+    ssl: { rejectUnauthorized: false }
+}) : null;
 
 // Initialize database table
 async function initDB() {
+    if (!pool) {
+        console.log('No database configured - running in local mode');
+        return;
+    }
     try {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS user_tags (
@@ -48,22 +52,24 @@ app.get('/api/videos', async (req, res) => {
         const data = await fs.readFile(VIDEOS_FILE, 'utf8');
         const videosData = JSON.parse(data);
 
-        // Get user-submitted tags from database
-        const dbResult = await pool.query('SELECT * FROM user_tags ORDER BY created_at ASC');
+        // Get user-submitted tags from database (if available)
+        if (pool) {
+            const dbResult = await pool.query('SELECT * FROM user_tags ORDER BY created_at ASC');
 
-        // Merge database tags into videos
-        dbResult.rows.forEach(dbTag => {
-            if (videosData.videos[dbTag.video_index]) {
-                if (!videosData.videos[dbTag.video_index].animalTags) {
-                    videosData.videos[dbTag.video_index].animalTags = [];
+            // Merge database tags into videos
+            dbResult.rows.forEach(dbTag => {
+                if (videosData.videos[dbTag.video_index]) {
+                    if (!videosData.videos[dbTag.video_index].animalTags) {
+                        videosData.videos[dbTag.video_index].animalTags = [];
+                    }
+                    videosData.videos[dbTag.video_index].animalTags.push({
+                        name: dbTag.name,
+                        timestamp: dbTag.timestamp,
+                        userSuggested: true
+                    });
                 }
-                videosData.videos[dbTag.video_index].animalTags.push({
-                    name: dbTag.name,
-                    timestamp: dbTag.timestamp,
-                    userSuggested: true
-                });
-            }
-        });
+            });
+        }
 
         res.json(videosData);
     } catch (error) {
@@ -90,6 +96,11 @@ app.post('/api/videos/:videoIndex/tags', async (req, res) => {
         // Check if video exists
         if (!videosData.videos[videoIndex]) {
             return res.status(404).json({ error: 'Video not found' });
+        }
+
+        // If no database, return error (tags won't persist locally)
+        if (!pool) {
+            return res.status(503).json({ error: 'Database not available in local mode' });
         }
 
         // Save tag to database
