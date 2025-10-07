@@ -20,12 +20,6 @@
           "name": "Rabbit",
           "timestamp": 90,
           "contributedBy": "Boti"
-        },
-        {
-          "name": "shrimp",
-          "timestamp": 13,
-          "userSuggested": true,
-          "contributedBy": "Boti"
         }
       ]
     },
@@ -59,18 +53,6 @@
           "name": "Robin",
           "timestamp": 70,
           "contributedBy": "Boti"
-        },
-        {
-          "name": "Monkey",
-          "timestamp": 90,
-          "userSuggested": true,
-          "contributedBy": "Boti"
-        },
-        {
-          "name": "bigfoot",
-          "timestamp": 100,
-          "userSuggested": true,
-          "contributedBy": "Anthony K"
         }
       ]
     },
