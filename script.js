@@ -405,3 +405,81 @@ async function loadVideos() {
 
 // Load videos when page loads
 document.addEventListener('DOMContentLoaded', loadVideos);
+
+// Lightbox functionality for gallery images
+const galleryImages = [
+    'botond_bakos_conference_pres/WhatsApp Image 2025-10-08 at 08.59.16.jpeg',
+    'botond_bakos_conference_pres/WhatsApp Image 2025-10-08 at 08.59.16 (1).jpeg',
+    'botond_bakos_conference_pres/WhatsApp Image 2025-10-08 at 08.59.17.jpeg',
+    'botond_bakos_conference_pres/WhatsApp Image 2025-10-08 at 08.59.17 (1).jpeg',
+    'botond_bakos_conference_pres/WhatsApp Image 2025-10-08 at 08.59.17 (2).jpeg',
+    'botond_bakos_conference_pres/WhatsApp Image 2025-10-08 at 08.59.17 (3).jpeg',
+    'botond_bakos_conference_pres/WhatsApp Image 2025-10-08 at 08.59.17 (4).jpeg'
+];
+
+let currentLightboxIndex = 0;
+
+function openLightbox(index) {
+    currentLightboxIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const counter = document.getElementById('lightbox-counter');
+
+    lightboxImage.src = galleryImages[index];
+    counter.textContent = `${index + 1} / ${galleryImages.length}`;
+    lightbox.classList.add('active');
+
+    // Prevent body scroll when lightbox is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+function changeLightboxImage(direction) {
+    currentLightboxIndex += direction;
+
+    // Loop around
+    if (currentLightboxIndex < 0) {
+        currentLightboxIndex = galleryImages.length - 1;
+    } else if (currentLightboxIndex >= galleryImages.length) {
+        currentLightboxIndex = 0;
+    }
+
+    const lightboxImage = document.getElementById('lightbox-image');
+    const counter = document.getElementById('lightbox-counter');
+
+    lightboxImage.src = galleryImages[currentLightboxIndex];
+    counter.textContent = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
+}
+
+// Close lightbox on escape key
+document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+    } else if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+        changeLightboxImage(-1);
+    } else if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+        changeLightboxImage(1);
+    }
+});
+
+// Close lightbox when clicking outside the image
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    }
+});
