@@ -124,11 +124,8 @@ main {
 
 /* Introduction Section */
 .intro-wrapper {
-    display: flex;
-    gap: 30px;
     margin-top: 40px;
     margin-bottom: 60px;
-    align-items: flex-start;
 }
 
 .intro-section {
@@ -139,8 +136,6 @@ main {
     border: 1px solid rgba(61,122,37,0.15);
     position: relative;
     overflow: hidden;
-    flex: 1;
-    max-width: 50%;
 }
 
 .intro-section::before {
@@ -156,7 +151,7 @@ main {
 .intro-section h2 {
     font-size: 2.2rem;
     color: #1a1a1a;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     font-weight: 700;
     background: linear-gradient(135deg, #2d5a1a 0%, #3d7a25 100%);
     -webkit-background-clip: text;
@@ -164,30 +159,69 @@ main {
     background-clip: text;
 }
 
+.intro-lead {
+    color: #3a3a3a;
+    font-size: 1.12rem;
+    line-height: 1.95;
+    margin-bottom: 32px;
+}
+
+.intro-content-wrapper {
+    display: grid;
+    grid-template-columns: 54% 46%;
+    gap: 45px;
+    align-items: start;
+}
+
+.intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .intro-section p {
     color: #4a4a4a;
     font-size: 1.08rem;
     line-height: 1.9;
-    margin-bottom: 18px;
-}
-
-.intro-section p:last-of-type {
     margin-bottom: 0;
 }
 
+.intro-section a {
+    color: #3d7a25;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.intro-section a:hover {
+    color: #2d5a1a;
+    text-decoration: underline;
+}
+
 .map-container {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: sticky;
+    top: 100px;
+    padding-right: 30px;
+    margin-top: 50px;
 }
 
 .map-image {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     margin-bottom: 16px;
+    border: 3px solid rgba(61,122,37,0.15);
+    transition: all 0.3s ease;
+}
+
+.map-image:hover {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    border-color: rgba(61,122,37,0.3);
+    transform: translateY(-2px);
 }
 
 .map-caption {
@@ -195,6 +229,8 @@ main {
     color: #666;
     font-style: italic;
     text-align: center;
+    line-height: 1.6;
+    padding: 0 8px;
 }
 
 .section-title {
@@ -605,6 +641,19 @@ footer p {
 
     .container {
         padding: 0 24px;
+    }
+
+    .intro-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .map-container {
+        position: static;
+    }
+
+    .intro-section {
+        padding: 30px 24px;
     }
 
     .videos-grid {
