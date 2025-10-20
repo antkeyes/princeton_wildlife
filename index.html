@@ -88,6 +88,29 @@
         </div>
     </div>
 
+    <script>
+        // Simple profanity filter - list of common profane words
+        class SimpleProfanityFilter {
+            constructor() {
+                // Common profanity list
+                this.words = [
+                    'damn', 'hell', 'ass', 'shit', 'fuck', 'bitch', 'bastard',
+                    'crap', 'piss', 'dick', 'cock', 'pussy', 'fag', 'asshole',
+                    'motherfucker', 'cunt', 'whore', 'slut', 'douche'
+                ];
+            }
+
+            isProfane(text) {
+                const lowerText = text.toLowerCase();
+                return this.words.some(word => {
+                    // Check for exact word or word with common obfuscations
+                    const pattern = word.split('').join('[*@$!]*');
+                    const regex = new RegExp(`\\b${pattern}\\b`, 'i');
+                    return regex.test(lowerText) || lowerText.includes(word);
+                });
+            }
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

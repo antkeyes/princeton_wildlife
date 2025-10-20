@@ -125,6 +125,9 @@ const API_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:8000/api'
     : '/api';
 
+// Initialize profanity filter
+const filter = typeof SimpleProfanityFilter !== 'undefined' ? new SimpleProfanityFilter() : null;
+
 // Function to get current video timestamp
 function getCurrentVideoTime(cardId) {
     const iframe = document.getElementById(`iframe-${cardId}`);
@@ -239,12 +242,21 @@ function showAddAnimalModal(cardId) {
         const animalName = animalNameInput.value.trim();
         const timestamp = parseInt(timestampInput.value);
 
-        if (animalName && !isNaN(timestamp) && timestamp >= 0) {
-            addTagToVideo(cardId, animalName, timestamp);
-            modal.style.display = 'none';
-        } else {
+        // Validate inputs
+        if (!animalName || isNaN(timestamp) || timestamp < 0) {
             alert('Please enter both an animal name and a valid timestamp (in seconds).');
+            return;
         }
+
+        // Check for profanity
+        if (filter && filter.isProfane(animalName)) {
+            alert('Please use appropriate language. Your input contains inappropriate content.');
+            return;
+        }
+
+        // If all validation passes, add the tag
+        addTagToVideo(cardId, animalName, timestamp);
+        modal.style.display = 'none';
     };
 
     // Handle cancel
