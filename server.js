@@ -29,6 +29,25 @@ async function initDB() {
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `);
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS videos (
+                id SERIAL PRIMARY KEY,
+                filename VARCHAR(255) NOT NULL,
+                video_path TEXT NOT NULL,
+                youtube_url TEXT NOT NULL UNIQUE,
+                title VARCHAR(255) NOT NULL,
+                description TEXT,
+                date VARCHAR(50),
+                species JSONB,
+                timestamps JSONB,
+                detection_count INTEGER,
+                frames_with_animals INTEGER,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+
         console.log('Database initialized successfully');
     } catch (error) {
         console.error('Error initializing database:', error);
@@ -45,33 +64,97 @@ app.use(express.static(__dirname));
 // Path to videos data file
 const VIDEOS_FILE = path.join(__dirname, 'videos.json');
 
-// Get all videos with tags (merged from JSON and database)
+// Helper function to convert timestamp string to seconds
+function convertTimestampToSeconds(timestampStr) {
+    if (!timestampStr) return 0;
+
+    timestampStr = timestampStr.trim();
+
+    // Handle MM:SS format
+    if (timestampStr.includes(':')) {
+        const parts = timestampStr.split(':');
+        try {
+            const minutes = parseInt(parts[0]);
+            const seconds = parseInt(parts[1]);
+            return minutes * 60 + seconds;
+        } catch {
+            return 0;
+        }
+    } else {
+        // Handle SS format
+        try {
+            return parseInt(timestampStr);
+        } catch {
+            return 0;
+        }
+    }
+}
+
+// Get all videos with tags (from database)
 app.get('/api/videos', async (req, res) => {
     try {
-        // Read videos from JSON
-        const data = await fs.readFile(VIDEOS_FILE, 'utf8');
-        const videosData = JSON.parse(data);
+        let videos = [];
 
-        // Get user-submitted tags from database (if available)
+        // Get videos from database if available
         if (pool) {
-            const dbResult = await pool.query('SELECT * FROM user_tags ORDER BY created_at ASC');
+            const dbResult = await pool.query('SELECT * FROM videos ORDER BY created_at DESC');
 
-            // Merge database tags into videos
-            dbResult.rows.forEach(dbTag => {
-                if (videosData.videos[dbTag.video_index]) {
-                    if (!videosData.videos[dbTag.video_index].animalTags) {
-                        videosData.videos[dbTag.video_index].animalTags = [];
-                    }
-                    videosData.videos[dbTag.video_index].animalTags.push({
+            // Format videos for frontend
+            videos = dbResult.rows.map(video => {
+                // Parse species and timestamps (stored as JSONB)
+                const species = video.species || [];
+                const timestamps = video.timestamps || [];
+
+                // Create animal tags
+                const animalTags = [];
+                if (species.length > 0 && timestamps.length > 0) {
+                    const firstTimestampSeconds = convertTimestampToSeconds(timestamps[0]);
+                    species.forEach(speciesName => {
+                        animalTags.push({
+                            name: speciesName,
+                            timestamp: firstTimestampSeconds
+                        });
+                    });
+                } else if (species.length > 0) {
+                    // No timestamps, but we have species
+                    species.forEach(speciesName => {
+                        animalTags.push({
+                            name: speciesName,
+                            timestamp: 0
+                        });
+                    });
+                }
+
+                return {
+                    title: video.title,
+                    url: video.youtube_url,
+                    description: video.description,
+                    date: video.date,
+                    animalTags: animalTags
+                };
+            });
+
+            // Get user-submitted tags from database
+            const userTagsResult = await pool.query('SELECT * FROM user_tags ORDER BY created_at ASC');
+
+            // Merge user-submitted tags into videos
+            userTagsResult.rows.forEach(dbTag => {
+                if (videos[dbTag.video_index]) {
+                    videos[dbTag.video_index].animalTags.push({
                         name: dbTag.name,
                         timestamp: dbTag.timestamp,
                         userSuggested: true
                     });
                 }
             });
+        } else {
+            // Fallback to JSON file if no database (local development)
+            const data = await fs.readFile(VIDEOS_FILE, 'utf8');
+            const videosData = JSON.parse(data);
+            videos = videosData.videos;
         }
 
-        res.json(videosData);
+        res.json({ videos });
     } catch (error) {
         console.error('Error reading videos:', error);
         res.status(500).json({ error: 'Failed to load videos' });
