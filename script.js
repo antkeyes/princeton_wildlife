@@ -75,16 +75,21 @@ function createVideoCard(video, index) {
     card.className = 'video-card';
     card.id = cardId;
 
-    // Enable JS API for YouTube iframe
+    // Use static YouTube thumbnail for instant loading
+    // maxresdefault.jpg is highest quality, with hqdefault.jpg as fallback
+    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
     card.innerHTML = `
         <div class="video-wrapper">
-            <iframe
-                id="iframe-${cardId}"
-                src="https://www.youtube.com/embed/${videoId}?enablejsapi=1"
-                title="${video.title}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
+            <div class="video-thumbnail" data-video-id="${videoId}" data-card-id="${cardId}" data-title="${video.title}">
+                <img src="${thumbnailUrl}" alt="${video.title}" loading="lazy">
+                <button class="play-button" aria-label="Play video">
+                    <svg viewBox="0 0 68 48" width="68" height="48">
+                        <path class="play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#212121" fill-opacity="0.8"></path>
+                        <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
         <div class="video-info">
             ${video.date ? `<span class="video-date">Recorded: ${video.date}</span>` : ''}
@@ -95,6 +100,22 @@ function createVideoCard(video, index) {
     `;
 
     return card;
+}
+
+// Function to load YouTube iframe when thumbnail is clicked
+function loadYouTubeVideo(thumbnailElement) {
+    const videoId = thumbnailElement.getAttribute('data-video-id');
+    const cardId = thumbnailElement.getAttribute('data-card-id');
+    const title = thumbnailElement.getAttribute('data-title');
+
+    const iframe = document.createElement('iframe');
+    iframe.id = `iframe-${cardId}`;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1`;
+    iframe.title = title;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+
+    thumbnailElement.parentNode.replaceChild(iframe, thumbnailElement);
 }
 
 // Function to seek video to timestamp
@@ -393,6 +414,13 @@ async function loadVideos() {
 
             // Attach tag click listeners
             attachTagClickListeners();
+
+            // Add click event listeners to video thumbnails
+            document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    loadYouTubeVideo(this);
+                });
+            });
 
             // Add click event listeners to "suggest animal" buttons
             document.querySelectorAll('.suggest-animal-btn').forEach(btn => {
